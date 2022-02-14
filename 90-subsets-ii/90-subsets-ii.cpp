@@ -16,7 +16,7 @@ public:
         
         tmp.pop_back();
         
-        while(i+1<nums.size()&&nums[i]==nums[i+1]){
+        while(i<nums.size()-1&&nums[i]==nums[i+1]){
             i+=1;
         }
         
