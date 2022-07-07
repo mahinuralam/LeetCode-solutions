@@ -1,25 +1,20 @@
 class Solution {
+   
     
-    void per(vector< int > &tmp, vector< vector< int > > &ans, map<int, int> &mp, vector<int>& nums)
+    void per(int ind, vector< vector< int > > &ans, vector<int>& nums)
     {
-        if(tmp.size()==nums.size())
+        if(ind==nums.size())
         {
-            ans.push_back(tmp);
+            ans.push_back(nums);
             return;
         }
         
-        for(int i=0; i < nums.size(); i++)
+       
+        for(int i = ind; i < nums.size(); i++)
         {
-            if(mp[i]==0)
-            {
-                tmp.push_back(nums[i]);
-                mp[i] = 1;
-                
-                per(tmp, ans, mp, nums);
-                
-                mp[i]=0;
-                tmp.pop_back();
-            }
+            swap(nums[ind], nums[i]);
+            per(ind+1, ans, nums);
+            swap(nums[ind], nums[i]);
         }
     }
     
@@ -28,9 +23,8 @@ public:
         
         vector< vector< int > > ans;
         vector< int > tmp;
-        map<int, int> mp;
         
-        per(tmp, ans, mp, nums);
+        per(0, ans, nums);
         
         return ans;
     }
